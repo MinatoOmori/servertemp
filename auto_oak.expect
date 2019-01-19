@@ -1,0 +1,15 @@
+#!/usr/bin/expect
+
+set PW "210oumnw-IE"
+set timeout 20
+spawn env LANG=C /usr/bin/ssh administrator@oakilo.westlab
+expect "password:"
+send "${PW}\n"
+expect "> "
+set i 0
+while {$i <= 50} {
+	send "show /system1/sensor$i\n"
+	expect "> "
+	incr i 1
+}
+exit 0
