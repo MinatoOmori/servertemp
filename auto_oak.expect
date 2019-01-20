@@ -3,8 +3,15 @@
 set PW "210oumnw-IE"
 set timeout 20
 spawn env LANG=C /usr/bin/ssh administrator@oakilo.westlab
-expect "password:"
-send "${PW}\n"
+expect {
+  "(yes/no)?" {
+    send "yes\n"
+    exp_continue
+  }
+    "password:" {
+    send "${PW}\n"
+  }
+}
 expect "> "
 set i 0
 while {$i <= 50} {
