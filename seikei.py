@@ -12,7 +12,7 @@ with open(original) as lines:
 		i=0
 		for line in lines:
 			i+=1
-			if i%45==0:
+			if i%51==0:
 				of.write(line)
 			else:
 				text = line.rstrip('\r\n')
