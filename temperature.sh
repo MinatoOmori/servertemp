@@ -6,6 +6,7 @@ echo time>$filename
 ./auto_oak.expect |grep DeviceID|awk -F '=' '{print $2}' >>$filename
 while :
 	do
-		date +%H:%M:%S.%3N >>$filename
+		date +"%Y-%m-%d %H:%M:%S" >>$filename
 		./auto_oak.expect |grep Curr|awk -F '=' '{print $2}' >>$filename
+		sleep 1
 	done
