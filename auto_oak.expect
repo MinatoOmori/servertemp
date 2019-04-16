@@ -1,6 +1,7 @@
 #!/usr/bin/expect
 
 set PW "210oumnw-IE"
+set PW2 "dkw9srmd"
 set timeout 20
 spawn env LANG=C /usr/bin/ssh administrator@oakilo.westlab
 expect {
@@ -19,4 +20,22 @@ while {$i <= 50} {
 	expect "> "
 	incr i 1
 }
+send "exit\n"
+spawn env LANG=C /usr/bin/ssh oomori@oak
+expect {
+  "(yes/no)?" {
+    send "yes\n"
+    exp_continue
+  }
+    "password:" {
+    send "${PW2}\n"
+  }
+}
+expect "\$ " 
+send "sensors\n"
+expect "\$ " 
+send "vmstat -D\n"
+expect "\$ " 
+send "vmstat -s\n"
+expect "\$ " 
 exit 0
